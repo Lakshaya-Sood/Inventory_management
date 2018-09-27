@@ -1,0 +1,44 @@
+.fabric-ui-view {
+  .main {
+    padding: 2em;
+    position: absolute;
+    top: 56px; 
+    bottom: 0;
+    left:0;
+    right:0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+  }
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) { 
+    .main {
+      top: 0;
+      transition: all 450ms;
+      left:80px;
+  }
+  .slide-body {
+    left:240px;
+  }
+//   .main {
+//     top: 0;
+//     perspective: 1000px;
+//     backface-visibility: hidden; 
+//     transition: transform 450ms;
+//     transform: translate3d(80px, 0, 0);
+//     right:80px;
+// }
+// .slide-body {
+//   transform:  translate3d(240px, 0, 0);
+//   right:240px;
+// }
+}
+}
+.truncate-ellipses div div span div{
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}

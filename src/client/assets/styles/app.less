@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700');
+@import "less/bootstrap.less";
+//vars
+@import "variables.less";
+
+// Pages
+@import "pages/base.less";
+@import "pages/home.less";
+@import "pages/login.less";
+
+@import "~ssp-ui/style.css";
+
+html,body {
+  font-size: 100%;
+  overflow: hidden;
+  font-family: Lato, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: @brand-body-color;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 300;
+  font-style: normal;
+}
+//overrides for header tags
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato',sans-serif;
+  color: @brand-primary-header-color;
+  font-weight: 300;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom:0;
+}
+h1 {
+  /*Headline Monster*/
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: normal;
+}
+h2 {
+  /*Headline 2*/
+  font-size: 20px;
+  line-height: 26px;
+}
+h3 {
+  /*Headline regular*/
+  font-size: 18px;
+  line-height: 24px;
+}
+h4 {
+  /*Headline small*/
+  font-size: 16px;
+  line-height: 22px;
+}
+h5 {
+  /*Text flow*/
+  font-size: 16px;
+  line-height: 22px;
+  color: #001333
+}
+h6 {
+  /*Small Text*/
+  font-size: 0.813em;
+  line-height: 15px;
+}
+  
+.margin-top-0 {
+  margin-top: 0px;
+}

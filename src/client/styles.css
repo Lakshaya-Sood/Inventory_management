@@ -1,0 +1,22 @@
+.fui-panel-info.fui-panel .fui-panel-header{
+    background-color: #fff !important;
+    font-family: arial;
+}
+.header{
+    font-weight: normal;
+    color: #002D72;
+    font-size: 20px;
+    line-height: 18px;
+    padding: 22px;
+    font-family: arial;
+}
+.m-input{
+    margin-left: 11px;
+    font-family: arial;
+}
+.product-creation-heading-main{
+    font-size: 24px;
+    font-weight: normal;
+    color: #002D72;
+    font-family: arial;
+}

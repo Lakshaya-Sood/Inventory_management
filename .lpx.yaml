@@ -1,0 +1,53 @@
+customer: mcc
+vertical: <your-vertical-name>
+ 
+# Prepare container that will be used for building and executing before/after
+# scripts and tests.
+install:
+  - apt-get update && apt-get install -y curl git
+  - apt-get install --yes make
+  - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  - apt-get install -y nodejs
+
+# install dependencies and build
+build: npm install && npm run buildprod || exit 1
+
+# ATTENTION: before step cannot contain whitespace at this time
+#            therefore I created a script to be called.
+#before: ./migrate.sh
+
+services:
+- id: <your-service-id>
+  type: node2
+  # Things to copy to container after build has been run
+  copy:
+  - __mocks__ /__mocks__
+  - __tests__ /__tests__
+  - dist /dist
+  - node_modules /node_modules
+  - src /src
+  - package.json /package.json
+  - server.js /server.js
+  # command to execute in container
+  exec: nodejs  dist/server.bundle.js --NODE_ENV=production
+  port: <your-port>
+  check: true
+  resources:
+   requests:
+     memory: "1000Mi"
+     cpu: "500m"
+   limits:
+     memory: "1500Mi"
+     cpu: "2000m"
+
+watchers:
+ - 
+
+# Put all your tests in a single shell script, for example pp_test.sh and
+# tell the pipeline to call this script in test step
+# Script will be run with full environment of running services
+tests:
+- stage: dev
+   test: ./tests.sh
+ - stage: pp
+   test: ./tests.sh
