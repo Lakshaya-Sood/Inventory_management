@@ -20,3 +20,21 @@
     color: #002D72;
     font-family: arial;
 }
+
+.product-creation-page{
+    position: fixed;
+    top: 20px;
+    left: 110px;
+}
+@media screen and (min-width: 986px) {
+    .glyphicon.glyphicon-cutlery {
+        color: white;
+        font-size: 28px;
+    }
+  }
+@media screen and (max-width: 986px) {
+    .glyphicon.glyphicon-cutlery {
+        color: #3ca2e0;
+        font-size: 30px;
+    }
+  }

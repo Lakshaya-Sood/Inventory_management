@@ -58,6 +58,7 @@ export default class AppsRepo {
             data: self.serialize(product),
             httpsAgent: agent
             }).then(function (response) {
+              console.log(response)
               //handle success
               console.log('Repo - Product Created');
               return callback(null, [])

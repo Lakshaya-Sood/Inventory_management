@@ -26,7 +26,7 @@ const menuDefs = [
   {
     key: 'inventory',
     title: 'Recipes',
-    Icon: SettingsIcon,
+    Icon: () => <span className="glyphicon glyphicon-cutlery"></span>,
     link: '/recipe-management',
     permissions: []
   },
