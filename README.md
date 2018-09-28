@@ -6,5 +6,5 @@ TERMINAL 2 == start.bat
 for_server
 TERMINAL 3 == npm run build:server
 
-http://localhost:30002/dashboard
+http://localhost:30001/dashboard
 
