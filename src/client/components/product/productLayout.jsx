@@ -126,7 +126,7 @@ class SampleForm extends React.Component {
     return (
       <div>
         <p className='product-creation-heading-main'>Product Creation</p>
-        <SnackBar ref='snackbar' duration='1000000' style={{left:'92%',top:'60px'}}/>
+        <SnackBar ref='snackbar' duration='1000000' style={{postion:'fixed',left:'92%',top:'60px'}}/>
         <Card
           showExpandableButton={true}
           expanded={true}>
@@ -202,7 +202,7 @@ class SampleForm extends React.Component {
                     <div className='col-md-1 col-lg-2'></div>
                   </div>
                 </div>
-                <div className='col-xs-12 col-md-12 col-lg-12' style={{marginLeft:'10px'}}>
+                <div className='col-xs-12 col-md-12 col-lg-12'>
                   <div className='row'>
                     <Datepicker
                       className='col-xs-6 col-md-5 col-lg-4'
@@ -213,7 +213,7 @@ class SampleForm extends React.Component {
                       label='Release Date'
                       labelStyle={{ fontWeight: 'normal' }} 
                       />
-                    <div className='col-md-1 col-lg-2' style={{marginLeft:'10px'}}></div>
+                    <div className='col-md-1 col-lg-2'></div>
                     <Datepicker
                       time={false}
                       className='col-xs-6 col-md-5 col-lg-4'

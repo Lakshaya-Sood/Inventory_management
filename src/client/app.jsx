@@ -5,8 +5,7 @@ import { Provider } from 'react-redux'
 import $ from 'jquery'
 import './assets/styles/app.less'
 import routes from './routes'
-import createStore from './store/createStore'
-import './index.css';
+import createStore from './store/createStore';
 import './styles.css';
 
 // Initialize application

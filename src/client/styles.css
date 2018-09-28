@@ -20,7 +20,9 @@
     color: #002D72;
     font-family: arial;
 }
-
+.m-input{
+    margin-left: 0px
+}
 @media screen and (min-width: 986px) {
     .glyphicon.glyphicon-cutlery {
         color: white;
