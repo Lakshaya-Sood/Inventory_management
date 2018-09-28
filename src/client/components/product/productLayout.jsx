@@ -124,7 +124,7 @@ class SampleForm extends React.Component {
     let { canSubmit, productName, internalName, brandName, unitOfMeasurement, releaseDate, discontinuationDate, information, productID, productWeight, loading } = this.state;
 
     return (
-      <div className='product-creation-page'>
+      <div>
         <p className='product-creation-heading-main'>Product Creation</p>
         <SnackBar ref='snackbar' duration='1000000' style={{left:'92%',top:'60px'}}/>
         <Card
