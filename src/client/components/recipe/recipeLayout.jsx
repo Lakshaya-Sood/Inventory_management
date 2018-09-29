@@ -16,44 +16,45 @@ const TypeOfRecipe = [
   { code: 'Main Dishes', name: 'Main Dishes' },
   { code: 'Starter', name: 'Starter' }
 ],
-BrandsList = [
-  { code: 'Le Grand Comptoir', name: 'Le Grand Comptoir' },
-  { code: 'Upper Crust', name: 'Upper Crust' },
-  { code: 'Caffè Ritazza', name: 'Caffè Ritazza' },
-  { code: 'Starbucks', name: 'Starbucks' },
-  { code: 'Burger King', name: 'Burger King' },
-  { code: 'YO! Sushi', name: 'YO! Sushi' },
-  { code: 'Le Train Bleu', name: 'Le Train Bleu' },
-  { code: 'Main Dishes', name: 'Main Dishes' },
-  { code: 'Walter', name: 'Walter' }
-],
-StoreList = [
-  { code: 'Airport Store', name: 'Airport Store' },
-  { code: 'Railway Store', name: 'Railway Store' },
-  { code: 'Mini Store', name: 'Mini Store' },
-  { code: 'Doorstep Delivery Store', name: 'Doorstep Delivery Store' }
-], 
-UnitsList = [
-  { code: 'WT_gr', name: 'Grain' },
-  { code: 'WT_g', name: 'Grams' },
-  { code: 'WT_kg', name: 'Kilogram' },
-  { code: 'WT_mg', name: 'Miligram' }
-],
-LocationList = [
-  { code: 'London', name: 'London' },
-  { code: 'Tokyo', name: 'Tokyo' },
-  { code: 'Melbourne', name: 'Melbourne' },
-  { code: 'Montreal', name: 'Montreal' },
-  { code: 'Paris', name: 'Paris' },
-  { code: 'Munich', name: 'Munich' },
-  { code: 'Berlin', name: 'Berlin' },
-  { code: 'Zurich', name: 'Zurich' }
-],
-UnitOfTime = [
-  { code: 'Hours', name: 'Hours' },
-  { code: 'Minutes', name: 'Minutes' },
-  { code: 'Seconds', name: 'Seconds' }
-],
+  BrandsList = [
+    { code: 'Le Grand Comptoir', name: 'Le Grand Comptoir' },
+    { code: 'Upper Crust', name: 'Upper Crust' },
+    { code: 'Caffè Ritazza', name: 'Caffè Ritazza' },
+    { code: 'Starbucks', name: 'Starbucks' },
+    { code: 'Burger King', name: 'Burger King' },
+    { code: 'YO! Sushi', name: 'YO! Sushi' },
+    { code: 'Le Train Bleu', name: 'Le Train Bleu' },
+    { code: 'Main Dishes', name: 'Main Dishes' },
+    { code: 'Walter', name: 'Walter' }
+  ],
+  StoreList = [
+    { code: 'Airport Store', name: 'Airport Store' },
+    { code: 'Railway Store', name: 'Railway Store' },
+    { code: 'Mini Store', name: 'Mini Store' },
+    { code: 'Doorstep Delivery Store', name: 'Doorstep Delivery Store' }
+  ],
+  UnitsList = [
+    { code: 'WT_gr', name: 'Grain' },
+    { code: 'WT_g', name: 'Grams' },
+    { code: 'WT_kg', name: 'Kilogram' },
+    { code: 'WT_mg', name: 'Miligram' }
+  ],
+  LocationList = [
+    { code: 'London', name: 'London' },
+    { code: 'Tokyo', name: 'Tokyo' },
+    { code: 'Melbourne', name: 'Melbourne' },
+    { code: 'Montreal', name: 'Montreal' },
+    { code: 'Paris', name: 'Paris' },
+    { code: 'Munich', name: 'Munich' },
+    { code: 'Berlin', name: 'Berlin' },
+    { code: 'Zurich', name: 'Zurich' }
+  ],
+  UnitOfTime = [
+    { code: 'Days', name: 'Days' },
+    { code: 'Hours', name: 'Hours' },
+    { code: 'Minutes', name: 'Minutes' },
+    { code: 'Seconds', name: 'Seconds' }
+  ],
   initialState = {
     canSubmit: false,
     recipeName: '',
@@ -65,8 +66,8 @@ UnitOfTime = [
     location: [],
     singleProductYield: 0,
     unitOfMeasurementForSingleProduct: '',
-    preprationTime: '00:00:00',
-    preprationTimeUnitsOrder: ['Hours','Minutes','Seconds'],
+    preprationTime: '00:00:00:00',
+    preprationTimeUnitsOrder: ['Days', 'Hours', 'Minutes', 'Seconds'],
     loading: false
   },
   cardStyle = {
@@ -110,7 +111,7 @@ class recipeLayout extends React.Component {
   }
 
   submit(model) {
-    console.log('submitted',model)
+    console.log('submitted', model)
     axios.post('http://localhost:30001/am/api/loginOfbiz', model)
       .then((response) => {
         this.showSuccess()
@@ -119,7 +120,7 @@ class recipeLayout extends React.Component {
       .catch((error) => {
         this.resetForm()
       });
-    this.setState({loading: true})
+    this.setState({ loading: true })
   }
 
   InputFieldChange(value, property) {
@@ -136,12 +137,13 @@ class recipeLayout extends React.Component {
 
   render() {
     let { canSubmit, recipeName, brandName, typeOfRecipe, storeType, yieldValue,
-       unitOfMeasurementForYield, location, singleProductYield, unitOfMeasurementForSingleProduct, loading } = this.state;
+      unitOfMeasurementForYield, location, singleProductYield, unitOfMeasurementForSingleProduct,
+      preprationTime, preprationTimeUnitsOrder, loading } = this.state;
 
     return (
       <div>
         <p className='product-creation-heading-main'>Recipe Creation</p>
-        <SnackBar ref='snackbar' duration='1000000' style={{left:'92%',top:'60px'}}/>
+        <SnackBar ref='snackbar' duration='1000000' style={{ left: '92%', top: '60px' }} />
         <Card
           showExpandableButton={true}
           expanded={true}>
@@ -157,7 +159,6 @@ class recipeLayout extends React.Component {
                       title='Recipe Name'
                       placeholder='Enter Recipe Name'
                       onChange={(val) => this.InputFieldChange(val, 'recipeName')}
-                      disabled={true}
                       value={recipeName} />
                     <div className='col-md-1 col-lg-2'></div>
                     <Input
@@ -176,7 +177,7 @@ class recipeLayout extends React.Component {
                 </div>
                 <div className='col-xs-12 col-md-12 col-lg-12'>
                   <div className='row'>
-                  <Input
+                    <Input
                       name='typeOfRecipe'
                       type='multiselect'
                       multiple={false}
@@ -202,28 +203,10 @@ class recipeLayout extends React.Component {
                     <div className='col-md-1 col-lg-2'></div>
                   </div>
                 </div>
-                <div className='col-xs-12 col-md-12 col-lg-12'>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                   <div className='row'>
+                    <div className='col-md-6 col-lg-6'></div>
                     <Input
-                      name='yieldValue'
-                      title='Yield'
-                      className='col-xs-12 col-md-5 col-lg-2'
-                      placeholder='Enter Yield'
-                      onChange={(val) => this.InputFieldChange(val, 'yieldValue')}
-                      value={yieldValue} />
-                    <Input
-                      name='unitOfMeasurementForYield'
-                      type='multiselect'
-                      multiple={false}
-                      value={unitOfMeasurementForYield}
-                      onChange={(val) => this.InputFieldChange(val, 'unitOfMeasurementForYield')}
-                      title='Unit Of Measurement'
-                      disabled='false'
-                      label='Unit Of Measurement'
-                      className='col-xs-12 col-md-5 col-lg-2'
-                      options={this.getDropDownOptions(UnitsList)} />
-                      <div className='col-md-1 col-lg-2'></div>
-                      <Input
                       name='location'
                       type='multiselect'
                       multiple={true}
@@ -237,15 +220,39 @@ class recipeLayout extends React.Component {
                     <div className='col-md-1 col-lg-2'></div>
                   </div>
                 </div>
-                <div className='col-xs-12 col-md-12 col-lg-12'>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                  <div className='row'>
+                    <Input
+                      name='yieldValue'
+                      title='Yield'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
+                      placeholder='Enter Yield'
+                      onChange={(val) => this.InputFieldChange(val, 'yieldValue')}
+                      value={yieldValue} />
+                    <div className='col-md-1 col-lg-2'></div>
+                    <Input
+                      name='unitOfMeasurementForYield'
+                      type='multiselect'
+                      multiple={false}
+                      value={unitOfMeasurementForYield}
+                      onChange={(val) => this.InputFieldChange(val, 'unitOfMeasurementForYield')}
+                      title='Unit Of Measurement'
+                      disabled='false'
+                      label='Unit Of Measurement'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
+                      options={this.getDropDownOptions(UnitsList)} />
+                  </div>
+                </div>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                   <div className='row'>
                     <Input
                       name='singleProductYield'
                       title='Single Product Yield'
-                      className='col-xs-12 col-md-5 col-lg-2'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
                       placeholder='Enter Single Product Yield'
                       onChange={(val) => this.InputFieldChange(val, 'singleProductYield')}
                       value={singleProductYield} />
+                    <div className='col-md-1 col-lg-2'></div>
                     <Input
                       name='unitOfMeasurementForSingleProduct'
                       type='multiselect'
@@ -255,65 +262,66 @@ class recipeLayout extends React.Component {
                       title='Unit Of Measurement'
                       disabled='false'
                       label='Unit Of Measurement'
-                      className='col-xs-12 col-md-5 col-lg-2'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
                       options={this.getDropDownOptions(UnitsList)} />
                   </div>
                 </div>
-                <div className='col-xs-12 col-md-12 col-lg-12'>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                   <div className='row'>
                     <Input
                       name='preprationTime'
                       title='Prepration Time'
-                      className='col-xs-12 col-md-5 col-lg-2'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
                       placeholder='Enter Prepration '
                       onChange={(val) => this.InputFieldChange(val, 'preprationTime')}
                       value={preprationTime} />
+                    <div className='col-md-1 col-lg-2'></div>
                     <Input
-                      name='unitOfMeasurementForSingleProduct'
+                      name='preprationTimeUnitsOrder'
                       type='multiselect'
-                      multiple={false}
-                      value={unitOfMeasurementForSingleProduct}
-                      onChange={(val) => this.InputFieldChange(val, 'unitOfMeasurementForSingleProduct')}
-                      title='Unit Of Measurement'
+                      multiple={true}
+                      value={preprationTimeUnitsOrder}
+                      onChange={(val) => this.InputFieldChange(val, 'preprationTimeUnitsOrder')}
+                      title='Units'
                       disabled='false'
-                      label='Unit Of Measurement'
-                      className='col-xs-12 col-md-5 col-lg-2'
-                      options={this.getDropDownOptions(UnitsList)} />
+                      label='Units'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
+                      options={this.getDropDownOptions(UnitOfTime)} />
                   </div>
                 </div>
                 <div className='row'>
-                    <CardHeader className='col-xs-12 col-md-12 col-lg-12' title="Additional Recipe Details" showExpandableButton={false} titleStyle={cardStyle} />
-                    <CardText>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Recipe Formula" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Labour Cost" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Describe Procedure" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Nutrition Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Allergen Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                    </CardText>
+                  <CardHeader className='col-xs-12 col-md-12 col-lg-12' title="Additional Recipe Details" showExpandableButton={false} titleStyle={cardStyle} />
+                  <CardText>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Recipe Formula" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Labour Cost" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Describe Procedure" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Nutrition Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Allergen Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                  </CardText>
                 </div>
                 <br />
                 <div className='row'>
                   <div className='col-xs-7 col-md-8 col-lg-8'>
                   </div>
                   <div className='col-xs-5 col-md-4 col-lg-4'>
-                    <Button label='Clear' className="fab-btn fab-btn-ghost" onClick={this.resetForm} type='button'/>
-                    {loading ? <LinearProgress mode="indeterminate" style={{height:'12px', width:'50%', display:'inline-block', marginLeft:'26px'}}/> :
-                    <Button label='Create Product' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{marginLeft:'25px'}}/>}
+                    <Button label='Clear' className="fab-btn fab-btn-ghost" onClick={this.resetForm} type='button' />
+                    {loading ? <LinearProgress mode="indeterminate" style={{ height: '12px', width: '50%', display: 'inline-block', marginLeft: '26px' }} /> :
+                      <Button label='Create Product' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{ marginLeft: '25px' }} />}
                   </div>
                 </div>
               </div>

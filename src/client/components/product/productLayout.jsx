@@ -4,7 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
-
+import ToDoList from './toDoList';
 const UnitsList = [
   { code: 'WT_gr', name: 'Grain' },
   { code: 'WT_g', name: 'Grams' },
@@ -81,7 +81,7 @@ class SampleForm extends React.Component {
   }
 
   submit(model) {
-    console.log('submitted',model)
+    console.log('submitted', model)
     axios.post('http://localhost:30001/am/api/loginOfbiz', model)
       .then((response) => {
         this.showSuccess()
@@ -90,7 +90,7 @@ class SampleForm extends React.Component {
       .catch((error) => {
         this.resetForm()
       });
-    this.setState({loading: true})
+    this.setState({ loading: true })
   }
 
   InputFieldChange(value, property) {
@@ -126,7 +126,7 @@ class SampleForm extends React.Component {
     return (
       <div>
         <p className='product-creation-heading-main'>Product Creation</p>
-        <SnackBar ref='snackbar' duration='1000000' style={{postion:'fixed',left:'92%',top:'60px'}}/>
+        <SnackBar ref='snackbar' duration='1000000' style={{ postion: 'fixed', left: '92%', top: '60px' }} />
         <Card
           showExpandableButton={true}
           expanded={true}>
@@ -176,17 +176,16 @@ class SampleForm extends React.Component {
                     <div className='col-md-1 col-lg-2'></div>
                   </div>
                 </div>
-                <div className='col-xs-12 col-md-12 col-lg-12'>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                   <div className='row'>
                     <Input
                       name='productWeight'
                       title='Product Weight'
-                      className='col-xs-12 col-md-5 col-lg-4'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
                       placeholder='Enter Product Weight'
                       onChange={(val) => this.InputFieldChange(val, 'productWeight')}
                       value={productWeight}
                       placeholder='Enter Product Weight' />
-                      
                     <div className='col-md-1 col-lg-2'></div>
                     <Input
                       name='UnitOfMeasurement'
@@ -197,32 +196,28 @@ class SampleForm extends React.Component {
                       title='Unit Of Measurement'
                       disabled='false'
                       label='Unit Of Measurement'
-                      className='col-xs-12 col-md-5 col-lg-4'
+                      className='col-xs-12 col-sm-6 col-md-5 col-lg-4'
                       options={this.getUnitsOfMeasurementOptions()} />
-                    <div className='col-md-1 col-lg-2'></div>
-                  </div>
-                </div>
-                <div className='col-xs-12 col-md-12 col-lg-12'>
-                  <div className='row'>
+                    <div className='col-sm-12'></div>
                     <Datepicker
-                      className='col-xs-6 col-md-5 col-lg-4'
+                      className='col-xs-6 col-sm-6 col-md-5 col-lg-4'
                       time={false}
                       name='ReleaseDate'
                       value={releaseDate}
                       onChange={(val) => this.InputFieldChange(val, 'releaseDate')}
                       label='Release Date'
-                      labelStyle={{ fontWeight: 'normal' }} 
-                      />
+                      labelStyle={{ fontWeight: 'normal' }}
+                    />
                     <div className='col-md-1 col-lg-2'></div>
                     <Datepicker
                       time={false}
-                      className='col-xs-6 col-md-5 col-lg-4'
+                      className='col-xs-6 col-sm-6 col-md-5 col-lg-4'
                       name='DiscontinuationDate'
                       value={discontinuationDate}
                       onChange={(val) => this.InputFieldChange(val, 'discontinuationDate')}
                       label='Discontinuation Date'
-                      labelStyle={{ fontWeight: 'normal' }} 
-                      style={{marginLeft:'20px'}}/>
+                      labelStyle={{ fontWeight: 'normal' }}
+                      style={{ marginLeft: '20px' }} />
                     <div className='col-md-1 col-lg-2'></div>
                   </div>
                 </div>
@@ -241,34 +236,34 @@ class SampleForm extends React.Component {
                   </div>
                 </div>
                 <div className='row'>
-                    <CardHeader className='col-xs-12 col-md-12 col-lg-12' title="Additional Product Details" showExpandableButton={false} titleStyle={cardStyle} />
-                    <CardText>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Nutrition Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Allergen Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Cost Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                      <Card className='col-xs-12 col-md-12 col-lg-11'>
-                        <CardHeader title="Other Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                        <CardText expandable={true}>---Content---</CardText>
-                      </Card>
-                    </CardText>
+                  <CardHeader className='col-xs-12 col-md-12 col-lg-12' title="Additional Product Details" showExpandableButton={false} titleStyle={cardStyle} />
+                  <CardText>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Nutrition Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Allergen Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}><ToDoList /></CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Cost Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                    <Card className='col-xs-12 col-md-12 col-lg-11'>
+                      <CardHeader title="Other Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
+                      <CardText expandable={true}>---Content---</CardText>
+                    </Card>
+                  </CardText>
                 </div>
                 <br />
                 <div className='row'>
                   <div className='col-xs-7 col-md-8 col-lg-8'>
                   </div>
                   <div className='col-xs-5 col-md-4 col-lg-4'>
-                    <Button label='Clear' className="fab-btn fab-btn-ghost" onClick={this.resetForm} type='button'/>
-                    {loading ? <LinearProgress mode="indeterminate" style={{height:'12px', width:'50%', display:'inline-block', marginLeft:'26px'}}/> :
-                    <Button label='Create Product' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{marginLeft:'25px'}}/>}
+                    <Button label='Clear' className="fab-btn fab-btn-ghost" onClick={this.resetForm} type='button' />
+                    {loading ? <LinearProgress mode="indeterminate" style={{ height: '12px', width: '50%', display: 'inline-block', marginLeft: '26px' }} /> :
+                      <Button label='Create Product' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{ marginLeft: '25px' }} />}
                   </div>
                 </div>
               </div>
