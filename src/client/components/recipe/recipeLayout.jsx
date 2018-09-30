@@ -321,7 +321,7 @@ class recipeLayout extends React.Component {
                   <div className='col-xs-5 col-md-4 col-lg-4'>
                     <Button label='Clear' className="fab-btn fab-btn-ghost" onClick={this.resetForm} type='button' />
                     {loading ? <LinearProgress mode="indeterminate" style={{ height: '12px', width: '50%', display: 'inline-block', marginLeft: '26px' }} /> :
-                      <Button label='Create Product' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{ marginLeft: '25px' }} />}
+                      <Button label='Create Recipe' fuiStyle='primary' onClick={this.submit} disabled={!canSubmit} type='submit' style={{ marginLeft: '25px' }} />}
                   </div>
                 </div>
               </div>

@@ -21,7 +21,21 @@
     font-family: arial;
 }
 .m-input{
-    margin-left: 0px
+    margin-left: 0px;
+}
+.above-list-block div div span div div {
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 3px !important;
+    padding-left: 0px !important;
+    border-bottom: 1px dotted;
+    width: 90%;
+    margin-bottom: 9px;
+}
+.above-list-block div div span div div div {
+    margin-left: 10px;
+    display: inline;
+    border: none !important;
 }
 @media screen and (min-width: 986px) {
     .glyphicon.glyphicon-cutlery {
