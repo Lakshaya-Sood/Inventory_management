@@ -2,6 +2,7 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentDelete from 'material-ui/svg-icons/content/delete-sweep';
+import ContentEdit from 'material-ui/svg-icons/content/create';
 import SvgIcon from 'material-ui/SvgIcon';
 import { List, ListItem } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
@@ -17,6 +18,11 @@ const iconStyle = {
         width: 35,
         height: 31,
         margin: 0
+    },
+    editIcon: {
+        width: 35,
+        height: 31,
+        margin: 0
     }
 };
 class ToDoList extends React.Component {
@@ -29,6 +35,7 @@ class ToDoList extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.addStep = this.addStep.bind(this);
         this.deleteStep = this.deleteStep.bind(this);
+        this.editStep = this.editStep.bind(this);
     }
     handleChange(event) {
         this.setState({ currentValue: event.target.value })
@@ -44,6 +51,11 @@ class ToDoList extends React.Component {
         let { stepsList } = this.state;
         stepsList.splice(index, 1);
         this.setState({ stepsList })
+    }
+    editStep(index) {
+        let { stepsList } = this.state,
+            itemToedit = stepsList.splice(index, 1);
+        this.setState({ stepsList, currentValue: itemToedit.join('') })
     }
     render() {
         let self = this,
@@ -71,7 +83,12 @@ class ToDoList extends React.Component {
                                     primaryText={element}
                                     hoverColor={'#fff'}
                                     leftIcon={<CheckboxIcon />}
-                                    rightIcon={<ContentDelete style={iconStyle.deleteIcon} onClick={() => this.deleteStep(index)} />}
+                                    rightIcon={(
+                                        <div style={{ margin: '0px', width: '70px' }}>
+                                            <ContentEdit style={iconStyle.editIcon} onClick={() => this.editStep(index)} />
+                                            <ContentDelete style={iconStyle.deleteIcon} onClick={() => this.deleteStep(index)} />
+                                        </div>
+                                    )}
                                 />)
                         })}
                     </List>
