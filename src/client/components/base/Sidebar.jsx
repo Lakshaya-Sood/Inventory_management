@@ -7,6 +7,7 @@ import AppsIcon from 'ssp-ui/svg-icons/AllApps'
 import SettingsIcon from 'ssp-ui/svg-icons/Settings'
 import EditIcon from 'ssp-ui/svg-icons/Edit'
 import autoBind from 'react-autobind'
+import TrendingUp from 'material-ui/svg-icons/action/trending-up'
 
 const menuDefs = [
   {
@@ -28,6 +29,13 @@ const menuDefs = [
     title: 'Recipes',
     Icon: () => <span className="glyphicon glyphicon-cutlery"></span>,
     link: '/recipe-management',
+    permissions: []
+  },
+  {
+    key: 'forecast',
+    title: 'Forecast',
+    Icon: () => <TrendingUp className='trendingup-svg' style={{width:'35px',height:'35px',margin:'0px'}}/>,
+    link: '/forecast',
     permissions: []
   },
   {

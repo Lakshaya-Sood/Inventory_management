@@ -7,7 +7,7 @@ import Home from './components/base/Home'
 import Product from './containers/ProductContainer'
 import Recipes from './containers/RecipesContainer'
 import Dashboard from './containers/DashboardContainer'
-
+import Forecast from './containers/ForecastContainer'
 injectTapEventPlugin()
 
 // create HOC by passing in the roles
@@ -34,6 +34,10 @@ const rootRoute = {
         {
           path: 'recipe-management',
           component: Recipes
+        },
+        {
+          path: 'forecast',
+          component: Forecast
         },
         {
           path: 'reports',

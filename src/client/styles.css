@@ -37,15 +37,22 @@
     display: inline;
     border: none !important;
 }
+
 @media screen and (min-width: 986px) {
     .glyphicon.glyphicon-cutlery {
         color: white;
         font-size: 28px;
     }
+    .trendingup-svg {
+        fill: white !important;
+    }
   }
 @media screen and (max-width: 986px) {
     .glyphicon.glyphicon-cutlery {
-        color: #3ca2e0;
+        color: #0064FE;
         font-size: 30px;
+    }
+    .trendingup-svg {
+        fill: #0064FE !important;
     }
   }
