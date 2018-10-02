@@ -4,7 +4,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
-
+import IngredientsTable from './ingredientsTable';
+import NutritionDetails from './nutritionDetails';
 const TypeOfRecipe = [
   { code: 'Bread', name: 'Bread' },
   { code: 'Breakfast', name: 'Breakfast' },
@@ -294,7 +295,7 @@ class recipeLayout extends React.Component {
                   <CardText>
                     <Card className='col-xs-12 col-md-12 col-lg-11'>
                       <CardHeader title="Recipe Formula" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                      <CardText expandable={true}>---Content---</CardText>
+                      <CardText expandable={true}><IngredientsTable /></CardText>
                     </Card>
                     <Card className='col-xs-12 col-md-12 col-lg-11'>
                       <CardHeader title="Labour Cost" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
@@ -306,7 +307,7 @@ class recipeLayout extends React.Component {
                     </Card>
                     <Card className='col-xs-12 col-md-12 col-lg-11'>
                       <CardHeader title="Nutrition Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />
-                      <CardText expandable={true}>---Content---</CardText>
+                      <CardText expandable={true}><NutritionDetails /></CardText>
                     </Card>
                     <Card className='col-xs-12 col-md-12 col-lg-11'>
                       <CardHeader title="Allergen Details" actAsExpander={true} showExpandableButton={true} actAsExpander={true} titleStyle={cardStyle} />

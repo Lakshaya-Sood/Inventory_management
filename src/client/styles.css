@@ -37,7 +37,9 @@
     display: inline;
     border: none !important;
 }
-
+.nut-rgt-col{
+    text-align: right;
+}
 @media screen and (min-width: 986px) {
     .glyphicon.glyphicon-cutlery {
         color: white;
