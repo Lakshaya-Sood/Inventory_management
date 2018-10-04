@@ -81,8 +81,19 @@ class SampleForm extends React.Component {
   }
 
   submit(model) {
-    console.log('submitted', model)
-    axios.post('http://localhost:30001/am/api/loginOfbiz', model)
+    let temp = {
+      productID: this.state.productID,
+      internalName: this.state.internalName,
+      brandName: this.state.brandName,
+      productName: this.state.productName,
+      information: this.state.information,
+      ReleaseDate: this.state.releaseDate,
+      DiscontinuationDate: this.state.discontinuationDate,
+      UnitOfMeasurement: this.state.unitOfMeasurement,
+      productWeight: this.state.discontinuationDate,
+    }
+    console.log('submitted', temp)
+    axios.post('http://localhost:30001/am/api/loginOfbiz', temp)
       .then((response) => {
         this.showSuccess()
         this.resetForm()
